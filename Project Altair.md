@@ -1,6 +1,5 @@
 # Project Altair
-
-[TOC]
+CSU Game Developers Association, Fall 2018
 
 ## Overview
 
