@@ -199,23 +199,27 @@ Project Altair is space themed tower defense game, where the player is defending
     * At some point in the construction the tower type is chosen at random
     * Once construction is complete the tower becomes active. 
 
-- #### Building new towers costs "currency" `Low`
+- #### Towers are built and moved by work crews `Medium`
 
   - Details
     - The towers will cost something as a way to restrict the player from building towers for free and therefore having no tension to the gameplay.
-    - There is a currency that is required to build new towers.
-    - `Option` Gain "money" from defeating enemies and use it to build towers. More dead enemies = more towers.
-        - This will reward success at building defenses, but could lead to a death spiral in a game where you get random towers if the player is unable to kill enemies with what they get. 
-        - This method is a standard for many tower defense games. 
-    - `Option` Have a cooldown for building new towers, starting as soon as the previous tower is placed. 
-      - This will ensure a steady pacing for the game, but could cause it to be less fun as it could hold back the pace. 
-      - It is likely that this method would make the game much slower by default as the pace is determined by the cooldown. 
-    - `Option` Constructing and moving towers requires work crews to do, player only has a certain number, lets say three, crews. 
-      - I really like this one, it gives the player an option to rush building or work on perfecting their setup with the towers they have. 
+    - Once tower construction is started a work crew is occupied until the tower becomes active. 
+    - Constructing and moving towers requires work crews. 
       - Limits the construction of towers by having a crew held up until construction of the previous one is complete. 
-      - Still could suffer form the slowing of the pace of the game. 
   - How it works
-    - This will need to be filled in later, once the decision on which method to use is made. 
+    - When tower construction is stated a work crew is marked as busy. 
+    - Once construction is finished the work crew is free.
+
+- ####  Work crews `Medium`
+
+  - Details
+    - The player has a total of three "work crews".
+    - To construct or move a tower the player assigns a work crew to that task.
+    - Work crews can only have one task at a time.
+    - When a task is completed the work crew is free to start another task
+    - If a task is canceled the work crew is immediately free, but all progress on the task is lost.
+      - If a tower was being built then is is canceled and completely removed from the map.
+      - If a tower was being moved then it is reconstructed at its original place, and the work crew is occupied until the build is finished.  
 
 - #### The player can move towers around the map `Medium`
 
@@ -354,12 +358,3 @@ While on a normal shipping run, and just a few weeks before reaching the end of 
   * Main menu complete
   * Final polish and balance 
   * Project complete
-
-
-
-
-
-
-
-
-
