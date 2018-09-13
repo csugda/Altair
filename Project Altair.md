@@ -13,8 +13,8 @@ Project Altair is a Sci-fi tower defense game set on the outer hull of a starshi
 
 * The Map is a grid-based map cut to the shape of the back of the ship.
 * Enemies land on the map and follow the shortest path to a weak spot.
-* Once a certain number of enemies get to week spots the game is a loss.
-* Once a certain number of enemies or waves of enemies has been defeated the game is won.
+* Once a certain number of enemies get to weak spots the game is a loss.
+* Once a certain number of enemies or waves of enemies has been defeated, the game is won.
 * The player can order construction of towers on the map that both attack enemies and disrupt their pathing. 
 * Towers take some time to build once placed.
 * Until construction is complete players will not know what type of tower the tower will be. 
@@ -74,7 +74,7 @@ Project Altair is space themed tower defense game, where the player is defending
     * If a tower is placed on a tile that tile's node becomes impassable to enemies.
   * How it works
     * The pathing map can be a bi-directional graph consisting of all of the tiles that do not have a tower on them. 
-    * pathing can be achieved with a simple search algorithm. 
+    * Pathing can be achieved with a simple search algorithm. 
       * At the moment A* looks like the best solution. 
     * The map will be between 5 and 15 tiles wide, and between 10 and 20 tiles tall.
 
@@ -113,13 +113,13 @@ Project Altair is space themed tower defense game, where the player is defending
     *  When enemies spawn they either run a search to get a path, or get a pre-calculated path (I think that this will be the better option so that when several enemies spawn they don't all have to run the pathfinding algorithm to just get the same answer)
     *  Enemies move to each node along the edges, then to the next one until reaching their goal. 
     *  If a new tower is placed, all enemies will need to re-path if their original path is blocked. 
-      * Possibly the best way will be to have them path using the goal as the heuristic goal for the pathfinding algorithm, but calling it good whenever they intersect the "permeant" path and just appending whatever is left of that path. this could improve pathfinding speed if that is necessary. 
+      * Possibly the best way will be to have them path using the goal as the heuristic goal for the pathfinding algorithm, but calling it good whenever they intersect the "permenant" path and just appending whatever is left of that path. This could improve pathfinding speed if that is necessary. 
 
 * #### Enemies spawn in waves `Medium`
 
   * Details
     * A wave is a group of one or more enemies of the same type.
-    * Waves spawn at regular increments
+    * Waves spawn at regular increments.
     * The player can rush the next wave to have it land immediately, starting the timer for the wave after it. 
   * How it works
     * Pre-code a list of waves, consisting of a enemy type and number. 
@@ -135,13 +135,13 @@ Project Altair is space themed tower defense game, where the player is defending
     - The different enemy types move at different speeds and have different mounts of health.
     - `Low` `Idea` The different enemy types could have weaknesses to different tower types, encouraging the player to place towers that do more damage to an enemy along the path that that enemy will take. 
   - How it works
-    - On spawning the enemy picks its target weak spot based on its type. 
+    - On spawning, the enemy picks its target weak spot based on its type. 
 
 * #### Enemies can be killed `High`
 
   * Details
     - Enemies have an amount of health, and once they take that much damage they are killed. 
-    - different types of enemies have different amounts of health. 
+    - Different types of enemies have different amounts of health. 
   * How it works
     - Each enemy tracks its own health. 
     - Enemies should have a method to reduce health.
@@ -178,7 +178,7 @@ Project Altair is space themed tower defense game, where the player is defending
       * Mortar/Missile tower `Low`
         * Targets an enemy, then fires a projectile at where it is when fired. 
         * When the projectile lands it does damage to every enemy in an area around the impact. 
-        * Fairly high damage, medium to low fore rate.
+        * Fairly high damage, medium to low fire rate.
 
 
 
@@ -210,7 +210,7 @@ Project Altair is space themed tower defense game, where the player is defending
     - `Option` Have a cooldown for building new towers, starting as soon as the previous tower is placed. 
       - This will ensure a steady pacing for the game, but could cause it to be less fun as it could hold back the pace. 
       - It is likely that this method would make the game much slower by default as the pace is determined by the cooldown. 
-    - `Option` Constructing and moving towers requires work crews to do, player only has a number, lets say three, crews. 
+    - `Option` Constructing and moving towers requires work crews to do, player only has a certain number, lets say three, crews. 
       - I really like this one, it gives the player an option to rush building or work on perfecting their setup with the towers they have. 
       - Limits the construction of towers by having a crew held up until construction of the previous one is complete. 
       - Still could suffer form the slowing of the pace of the game. 
@@ -344,7 +344,7 @@ While on a normal shipping run, and just a few weeks before reaching the end of 
 
 * 12/1/18
   * Complete gameplay, including waves of enemies, victory condition, and loss condition. 
-  * Complete and useable gameplay UI.
+  * Complete and usable gameplay UI.
   * Animation for enemies and towers.
   * Music and ambient sound.
 
