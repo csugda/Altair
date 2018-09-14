@@ -40,11 +40,11 @@ Project Altair is a Sci-fi tower defense game set on the outer hull of a starshi
   * Code Team
     * Team Lead: David Im
     * Team Members
-      * <Names>
+      * Meredith Voyles
   * Engine Team
     * Team Lead: Jonathan Griego
     * Team Members
-      * <Names>
+      * Meredith Voyles
 
 
 
