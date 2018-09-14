@@ -1,6 +1,8 @@
 # Project Altair
 CSU Game Developers Association, Fall 2018
 
+
+
 ## Overview
 
 ### Theme/Setting/Genre
@@ -333,7 +335,7 @@ While on a normal shipping run, and just a few weeks before reaching the end of 
 * 10/1/2018
   * Map that can have towers placed on it.
   * Enemy pathfinder.
-  * Complete tower and enemy concept art.
+  * Complete tower enemy, and environment concept art.
 
 ### Phase 2
 
