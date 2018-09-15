@@ -21,6 +21,7 @@ namespace Assets.Scripts.Map
         {
 
         }
+        
 
         //called by ResetPath event, marks visited as false.
         private void ResetPath()
@@ -34,16 +35,7 @@ namespace Assets.Scripts.Map
             this.visited = true;
         }
 
-        /// <summary>
-        /// The F-value for this PathNode to the goal. 
-        /// </summary>
-        /// <param name="g">G-value for the pathfinding algorithim so far</param>
-        /// <param name="goal">PathNode target</param>
-        /// <returns>F-value for this node</returns>
-        internal int FValue(int g, PathNode goal)
-        {
-            return g + this.Heuristic(goal);
-        }
+        
 
         //Just a getter for the visited boolean.
         internal bool IsVisited()
@@ -79,6 +71,18 @@ namespace Assets.Scripts.Map
         public PathNode[] GetNeighbors()
         {
             return new PathNode[0];
+        }
+
+        public override bool Equals(object obj)
+        {
+            var node = obj as PathNode;
+            return node != null &&
+                   base.Equals(obj) && true; // Need to implement equals with the cordnates of the node
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
