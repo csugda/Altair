@@ -22,9 +22,9 @@ namespace Assets.Scripts.Map
             }
         }
 
-        public static bool FindPath(PathNode start, PathNode end)
+        public static bool FindPath(PathNode start, PathNode goal, PathType path)
         {
-            return AStarSearch(start, end);
+            return AStarSearch(start, goal, path);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Map
         /// <param name="start">PathNode to start at.</param>
         /// <param name="goal">PathNode that is the goal.</param>
         /// <returns>True if a path was found and the PathNodes are set with the correct NextNode values, false otherwise.</returns>
-        private static bool AStarSearch(PathNode start, PathNode goal)
+        private static bool AStarSearch(PathNode start, PathNode goal, PathType path)
         {
             PathNode.resetPath.Invoke(); // mark all path nodes as unexplored
 
@@ -59,7 +59,8 @@ namespace Assets.Scripts.Map
                     PathNodeStruct node = cur;
                     while (node.parent != null) //the start node has a null parent
                     {
-                        node.parent.node.SetNextNode(node.node);
+                        
+                        node.parent.node.SetNextNode(node.node, path);
                         node = node.parent;
                     }
                     return true; //found a path

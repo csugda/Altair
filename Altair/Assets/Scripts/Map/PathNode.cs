@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Assets.Scripts.Map
@@ -9,12 +10,20 @@ namespace Assets.Scripts.Map
     {
         public static PathResetEvent resetPath = new PathResetEvent();
 
+        public bool impassable = false;
+        private int x, y;
         bool visited = false;
+        public PathNode[] nextNodeArray;
+        public PathNode[] neighbors;
 
         // Use this for initialization
         void Start()
         {
             resetPath.AddListener(this.ResetPath);
+            this.nextNodeArray = new PathNode[3];
+            nextNodeArray[0] = null;
+            nextNodeArray[1] = null;
+            nextNodeArray[2] = null;
         }
         // Update is called once per frame
         void Update()
@@ -22,6 +31,27 @@ namespace Assets.Scripts.Map
 
         }
         
+        public void SetXY(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public PathNode GetNextNode(PathType path)
+        {
+            switch (path)
+            {
+                case PathType.A:
+                    return nextNodeArray[0];
+                case PathType.B:
+                    return nextNodeArray[1];
+                case PathType.C:
+                    return nextNodeArray[2];
+                default:
+                    return null;
+            }
+            
+        }
 
         //called by ResetPath event, marks visited as false.
         private void ResetPath()
@@ -47,9 +77,22 @@ namespace Assets.Scripts.Map
         /// Sets the next node of the path
         /// </summary>
         /// <param name="next">PathNode to go to next</param>
-        public void SetNextNode(PathNode next)
+        public void SetNextNode(PathNode next, PathType path)
         {
-            return;
+            Debug.Log("Setting (" + this.gameObject.name + ") next node to (" + next.gameObject.name + ")");
+            Debug.Log(this.nextNodeArray);
+            switch (path)
+            {
+                case PathType.A:
+                    nextNodeArray[0] = next;
+                    break;
+                case PathType.B:
+                    nextNodeArray[1] = next;
+                    break;
+                case PathType.C:
+                    nextNodeArray[2] = next;
+                    break;
+            }
         }
 
         /// <summary>
@@ -60,7 +103,12 @@ namespace Assets.Scripts.Map
         /// <returns></returns>
         public int Heuristic(PathNode goal)
         {
-            return 0;
+            return Mathf.Abs(this.x - goal.x) + Mathf.Abs(this.y - goal.y);
+        }
+
+        public void SetNeighbors(PathNode[] neighbors)
+        {
+            this.neighbors = neighbors;
         }
 
         /// <summary>
@@ -70,7 +118,14 @@ namespace Assets.Scripts.Map
         /// <returns>Array of PathNodes containing 0-4 nighbors</returns>
         public PathNode[] GetNeighbors()
         {
-            return new PathNode[0];
+            List<PathNode> temp = new List<PathNode>();
+            foreach (PathNode n in this.neighbors)
+            {
+                if (n.impassable)
+                    continue;
+                temp.Add(n);
+            }
+            return temp.ToArray();
         }
 
         public override bool Equals(object obj)
