@@ -16,6 +16,22 @@ namespace Assets.Scripts.Map
         public PathNode[] nextNodeArray;
         public PathNode[] neighbors;
 
+        public int X
+        {
+            get
+            {
+                return x;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return y;
+            }
+        }
+
         // Use this for initialization
         void Start()
         {
@@ -110,6 +126,8 @@ namespace Assets.Scripts.Map
         {
             this.neighbors = neighbors;
         }
+
+
 
         /// <summary>
         /// Returns all valid neighbors to this node. 
