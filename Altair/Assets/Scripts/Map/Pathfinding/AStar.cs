@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Assets.Scripts.Map.Pathfinding
 {
     public class NoPathFoundEvent : UnityEvent { }
+    public class PathChangedEvent : UnityEvent { }
+
     public class AStar
     {
         public static NoPathFoundEvent PathNotFound = new NoPathFoundEvent();
+        public static PathChangedEvent PathChanged = new PathChangedEvent();
+
         /// <summary>
         /// A class to serve as a structure for the pathfinding algorithim. 
         /// </summary>
@@ -122,6 +127,7 @@ namespace Assets.Scripts.Map.Pathfinding
                         node.parent.node.SetNextNode(node.node, path);
                         node = node.parent;
                     }
+                    PathChanged.Invoke();
                     return true; //found a path
                 }
 
@@ -139,6 +145,7 @@ namespace Assets.Scripts.Map.Pathfinding
 
                 ++ pathLength;
             }
+            Debug.Log("No path found from " + start + " to " + goal);
             PathNotFound.Invoke();
             return false; // no path was found.
         }

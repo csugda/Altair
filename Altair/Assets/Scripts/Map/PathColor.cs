@@ -12,10 +12,11 @@ namespace Assets.Scripts.Map
         private void Start()
         {
             me = this.gameObject.GetComponent<Renderer>().material;
+            AStar.PathChanged.AddListener(this.UpdateColors);
         }
 
         // Update is called once per frame
-        void Update()
+        void UpdateColors()
         {
             Color temp = Color.black;
             if (this.gameObject.GetComponent<PathNode>().GetNextNode(PathType.A))

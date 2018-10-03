@@ -31,9 +31,9 @@ namespace Assets.Scripts.Map.Pathfinding
                 return y;
             }
         }
-
+        
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             resetPath.AddListener(this.ResetPath);
             this.nextNodeArray = new PathNode[3];
@@ -95,8 +95,8 @@ namespace Assets.Scripts.Map.Pathfinding
         /// <param name="next">PathNode to go to next</param>
         public void SetNextNode(PathNode next, PathType path)
         {
-            Debug.Log("Setting (" + this.gameObject.name + ") next node to (" + next.gameObject.name + ")");
-            Debug.Log(this.nextNodeArray);
+            //Debug.Log("Setting (" + this.gameObject.name + ") next node to (" + next.gameObject.name + ")");
+            //Debug.Log(this.nextNodeArray);
             switch (path)
             {
                 case PathType.A:
@@ -156,6 +156,11 @@ namespace Assets.Scripts.Map.Pathfinding
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return this.gameObject.transform.parent.name;
         }
     }
 }
