@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Map;
+﻿using Assets.Scripts.Map.Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +22,14 @@ public class UnitController : MonoBehaviour {
         this.transform.position = startLocation.transform.position;
     }
 
+    public PathNode NextPathNode()
+    {
+        return nextNodeInPath.GetComponent<PathNode>();
+    }
+    public PathType GetPathType()
+    {
+        return this.endGoal;
+    }
 
 
     void FixedUpdate()
