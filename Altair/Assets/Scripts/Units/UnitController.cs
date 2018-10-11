@@ -7,7 +7,7 @@ using UnityEngine;
 public class UnitController : MonoBehaviour {
 
     [SerializeField]
-    private GameObject nextNodeInPath;
+    private PathNode nextNodeInPath;
 
     [SerializeField]
     private GameObject startLocation;
@@ -16,7 +16,11 @@ public class UnitController : MonoBehaviour {
     [SerializeField]
     private PathType endGoal;
 
-
+    public void Setup(PathNode start, PathType goal)
+    {
+        this.startLocation = start.gameObject;
+        this.nextNodeInPath = start;
+    }
     private void Start()
     {
         this.transform.position = startLocation.transform.position;
@@ -24,7 +28,7 @@ public class UnitController : MonoBehaviour {
 
     public PathNode NextPathNode()
     {
-        return nextNodeInPath.GetComponent<PathNode>();
+        return nextNodeInPath;
     }
     public PathType GetPathType()
     {
@@ -34,7 +38,6 @@ public class UnitController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
         if (nextNodeInPath == null)
         {
             GetNextPathNode();
@@ -128,7 +131,7 @@ public class UnitController : MonoBehaviour {
             } 
             if(next != null)
             {
-                nextNodeInPath = next.gameObject;
+                nextNodeInPath = next;
             }
             
         } catch(NullReferenceException){
