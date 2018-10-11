@@ -6,20 +6,36 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour {
 
-    [SerializeField]
+    //[SerializeField]
     private GameObject nextNodeInPath;
 
-    [SerializeField]
+    //[SerializeField]
     private GameObject startLocation;
     [SerializeField]
-    private float speed = .10f;
+    private float speed = .5f;
     [SerializeField]
     private PathType endGoal;
 
 
+    public void setStartLocation(GameObject startLocation)
+    {
+        // Set the start Node
+        this.startLocation = startLocation;
+        this.nextNodeInPath = startLocation;
+        // Set the Location
+        this.transform.position = startLocation.transform.position;
+
+    }
+
+    public void setEndGoal(PathType endGoal)
+    {
+        this.endGoal = endGoal;
+    }
+
     private void Start()
     {
-        this.transform.position = startLocation.transform.position;
+        
+        this.nextNodeInPath = startLocation;
     }
 
     public PathNode NextPathNode()
