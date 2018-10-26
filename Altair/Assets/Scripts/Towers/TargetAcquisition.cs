@@ -11,7 +11,7 @@ public class TargetAcquisition : MonoBehaviour {
     public float updateTargetRate = 0.5f; //time in seconds
     public float traverseRate = 10f;
     public string enemyTag = "Enemy";
-
+    
 	// Use this for initialization
 	void Start () {
         // Check for new target a lot fewer times per second
