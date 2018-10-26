@@ -1,0 +1,9 @@
+# This is a comment
+# The layout of the wave info. Each wave is on a new line and the waves are created with this pattern for unit info
+# Unit Type (0-2), Number to spawn, Time between spawns, The time the first unit spawns
+# Example: For a unit of type 0, that will spawn 3 times, one second apart, and start spawning five seconds after the wave starts
+# 0,3,1,5
+#
+# The wave is created by combining multiple unit info patterns together with ';'
+# Example: unitInfo1; unitInfo2; unitInfo3;
+0,3,1,5;1,10,.5,0;2,1,1,10

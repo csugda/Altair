@@ -104,7 +104,7 @@ public class UnitController : MonoBehaviour {
             
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, Time.deltaTime * 5);
         }
-        /*
+        /* 
         Vector3 dir = nextNodeInPath.transform.position - this.transform.localPosition;
 
         float distThisFrame = speed * Time.deltaTime;
@@ -148,7 +148,7 @@ public class UnitController : MonoBehaviour {
             }
             
         } catch(NullReferenceException){
-            Debug.Log("Could not set next node.");
+            //Debug.Log("Could not set next node.");
             return;
         }
         
