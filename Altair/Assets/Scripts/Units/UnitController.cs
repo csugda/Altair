@@ -20,6 +20,7 @@ public class UnitController : MonoBehaviour {
     {
         this.startLocation = start.gameObject;
         this.nextNodeInPath = start;
+        this.endGoal = goal;
     }
     private void Start()
     {
