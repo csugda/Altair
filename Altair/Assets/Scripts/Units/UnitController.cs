@@ -6,30 +6,41 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour {
 
-    [SerializeField]
-    private PathNode nextNodeInPath;
+    //[SerializeField]
+    private GameObject nextNodeInPath;
 
-    [SerializeField]
+    //[SerializeField]
     private GameObject startLocation;
     [SerializeField]
-    private float speed = .10f;
+    private float speed = .5f;
     [SerializeField]
     private PathType endGoal;
 
-    public void Setup(PathNode start, PathType goal)
+
+    public void setStartLocation(GameObject startLocation)
     {
-        this.startLocation = start.gameObject;
-        this.nextNodeInPath = start;
-        this.endGoal = goal;
+        // Set the start Node
+        this.startLocation = startLocation;
+        this.nextNodeInPath = startLocation;
+        // Set the Location
+        this.transform.position = startLocation.transform.position;
+
     }
+
+    public void setEndGoal(PathType endGoal)
+    {
+        this.endGoal = endGoal;
+    }
+
     private void Start()
     {
-        this.transform.position = startLocation.transform.position;
+        
+        this.nextNodeInPath = startLocation;
     }
 
     public PathNode NextPathNode()
     {
-        return nextNodeInPath;
+        return nextNodeInPath.GetComponent<PathNode>();
     }
     public PathType GetPathType()
     {
@@ -39,6 +50,7 @@ public class UnitController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        
         if (nextNodeInPath == null)
         {
             GetNextPathNode();
@@ -92,7 +104,7 @@ public class UnitController : MonoBehaviour {
             
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, Time.deltaTime * 5);
         }
-        /*
+        /* 
         Vector3 dir = nextNodeInPath.transform.position - this.transform.localPosition;
 
         float distThisFrame = speed * Time.deltaTime;
@@ -132,11 +144,11 @@ public class UnitController : MonoBehaviour {
             } 
             if(next != null)
             {
-                nextNodeInPath = next;
+                nextNodeInPath = next.gameObject;
             }
             
         } catch(NullReferenceException){
-            Debug.Log("Could not set next node.");
+            //Debug.Log("Could not set next node.");
             return;
         }
         
