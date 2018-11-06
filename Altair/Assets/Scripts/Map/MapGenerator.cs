@@ -7,6 +7,7 @@ namespace Assets.Scripts.Map
 {
     [ExecuteInEditMode]
     public class MapGenerator : MonoBehaviour {
+        public int x, y;
         public GameObject prefab;
 
         [ContextMenu("Generate Map")]
@@ -17,18 +18,18 @@ namespace Assets.Scripts.Map
                 DestroyImmediate(this.transform.GetChild(i).gameObject);
             }
             
-            for (int i = 0; i <= 20; ++i)
+            for (int i = 0; i <= y; ++i)
             {
-                for (int j = 0; j <= 20; ++j)
+                for (int j = 0; j <= x; ++j)
                 {
                     GameObject temp = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, this.gameObject.transform);
                     temp.name = i + " " + j;
                     temp.GetComponentInChildren<PathNode>().SetXY(i, j);
                 }
             }
-            for (int i = 0; i <= 20; ++i)
+            for (int i = 0; i <= y; ++i)
             {
-                for (int j = 0; j <= 20; ++j)
+                for (int j = 0; j <= x; ++j)
                 {
                     PathNode temp = GameObject.Find(i + " " + j).GetComponentInChildren<PathNode>();
                     List<PathNode> neighbors = new List<PathNode>();
@@ -36,9 +37,9 @@ namespace Assets.Scripts.Map
                         neighbors.Add(GameObject.Find((i - 1) + " " + j).GetComponentInChildren<PathNode>());
                     if (j > 0)
                         neighbors.Add(GameObject.Find(i + " " + (j - 1)).GetComponentInChildren<PathNode>());
-                    if (i < 20)
+                    if (i < y)
                         neighbors.Add(GameObject.Find((i + 1) + " " + j).GetComponentInChildren<PathNode>());
-                    if (j < 20)
+                    if (j < x)
                         neighbors.Add(GameObject.Find(i + " " + (j + 1)).GetComponentInChildren<PathNode>());
                     temp.SetNeighbors(neighbors.ToArray());
                 }
