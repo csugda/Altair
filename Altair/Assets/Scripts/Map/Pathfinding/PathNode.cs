@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,7 +41,22 @@ namespace Assets.Scripts.Map.Pathfinding
             nextNodeArray[0] = null;
             nextNodeArray[1] = null;
             nextNodeArray[2] = null;
+
+            this.ResetNeighbors();
         }
+
+        private void ResetNeighbors()
+        {
+            List<PathNode> temp = new List<PathNode>();
+            foreach (PathNode n in this.neighbors)
+            {
+                if (n == null)
+                    continue;
+                temp.Add(n);
+            }
+            this.neighbors = temp.ToArray();
+        }
+
         // Update is called once per frame
         void Update()
         {
