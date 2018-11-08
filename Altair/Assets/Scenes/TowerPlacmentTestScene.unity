@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29845,7 +29845,7 @@ MonoBehaviour:
   - {fileID: 1273277741375330, guid: f016989ab2aedff46b37db3177b86d1d, type: 2}
   - {fileID: 1901241941961020, guid: a38e4e42f697f8b4ba3dcb4849940dfc, type: 2}
   - {fileID: 1785812703250200, guid: ae79c84f74f3e964fb1a0c91c366f3ae, type: 2}
-  spawnEnemies: 0
+  spawnEnemies: 1
   waveController: {fileID: 1901996681}
 --- !u!1 &1473092682
 GameObject:
