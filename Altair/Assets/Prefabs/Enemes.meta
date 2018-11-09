@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: be4f5f35658d50e48a4dc351d75dc5d8
+=======
+<<<<<<< HEAD
+guid: c112787de022287478316f19c6699eb9
+=======
+guid: be4f5f35658d50e48a4dc351d75dc5d8
+>>>>>>> 3f63fc833b49d8bdd5dd1041d70983b1bd2b24d0
+>>>>>>> EnemyHealth
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
