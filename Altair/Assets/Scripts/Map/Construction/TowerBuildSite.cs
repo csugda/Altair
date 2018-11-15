@@ -2,17 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Map.Construction
 {
 
     public class TowerBuildSite : MonoBehaviour
     {
+        private static bool buildMode = false;
+        private static BuildTeam activeTeam;
         PrefabSet towers;
         bool towerExists = false;
         public GameObject previewPrefab;
         private GameObject preview;
         private bool buildable;
+
+        public static void StartBuildMode(BuildTeam team)
+        {
+            buildMode = true;
+            activeTeam = team;
+        }
+        public static void EndBuildMode()
+        {
+            buildMode = false;
+            activeTeam = null;
+        }
+
         private void Start()
         {
             AStar.PathNotFound.AddListener(this.PreviewError);
@@ -21,16 +36,15 @@ namespace Assets.Scripts.Map.Construction
 
         private void PreviewError()
         {
-
             if (preview == null) return;
             this.buildable = false;
             preview.GetComponent<Renderer>().material.color = Color.red;
         }
-
         public void OnMouseEnter()
         {
+            if (!buildMode) return;
             //Debug.Log("MouseEnter: " + this.gameObject.transform.parent.name);
-            if (towerExists || preview != null) return;
+            if (towerExists || preview != null || EventSystem.current.IsPointerOverGameObject()) return;
             this.gameObject.transform.parent.GetComponentInChildren<PathNode>().impassable = true;
             this.buildable = true;
             preview = Instantiate(previewPrefab, this.gameObject.transform.parent);
@@ -50,14 +64,30 @@ namespace Assets.Scripts.Map.Construction
 
         public void OnMouseDown()
         {
-            if (towerExists || !this.buildable) return;
+            if (!buildMode) return;
+            if (towerExists || !this.buildable || EventSystem.current.IsPointerOverGameObject()) return;
+            BuildTeam team = activeTeam;
             this.gameObject.transform.parent.GetComponentInChildren<PathNode>().impassable = true;
             EnemyPathRegen.UpdateEnemyPaths.Invoke(true);
             AStar.GeneratePath();
-            Instantiate(towers.RandomPrefab(), this.gameObject.transform.parent);
+
+            //maybe not pass this, but pass the construction site. that really makes more sense.
+            team.BeginConstruction(this);
+
+            //TODO this should do something else to handle the construction site. 
+            GameObject tower = Instantiate(towers.RandomPrefab(), this.gameObject.transform.parent);
+            tower.GetComponent<TargetAcquisition>().enabled = false;
+            StartCoroutine(finishConstruction(team, tower));
             this.towerExists = true;
             this.OnMouseExit();
+        }
 
+        //Temaprary construction stuff for testing. 
+        IEnumerator finishConstruction(BuildTeam team, GameObject tower)
+        {
+            yield return new WaitForSeconds(4);
+            team.FinishConstruction();
+            tower.GetComponent<TargetAcquisition>().enabled = true;
         }
     }
 }
