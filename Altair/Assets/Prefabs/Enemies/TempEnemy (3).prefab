@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4305208989648068}
   - component: {fileID: 114288867657300610}
   - component: {fileID: 114938063103277420}
+  - component: {fileID: 114682076418343372}
   m_Layer: 0
   m_Name: TempEnemy (3)
   m_TagString: Enemy
@@ -128,6 +129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.85
   endGoal: 2
+--- !u!114 &114682076418343372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785812703250200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 916bb9e9bb2d9994facff1a0e14fc808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114938063103277420
 MonoBehaviour:
   m_ObjectHideFlags: 1
