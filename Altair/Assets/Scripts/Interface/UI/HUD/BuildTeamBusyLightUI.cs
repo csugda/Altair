@@ -12,7 +12,7 @@ public class BuildTeamBusyLightUI : MonoBehaviour {
     private void Update()
     {
         if (activiteOnInstruction)
-            this.GetComponent<Image>().sprite = team.buildMode ? busy : normal;
+            this.GetComponent<Image>().sprite = team.mode!=BuildTeam.Mode.NONE ? busy : normal;
         else
             this.GetComponent<Image>().sprite = team.busy ? busy : normal;
     }
