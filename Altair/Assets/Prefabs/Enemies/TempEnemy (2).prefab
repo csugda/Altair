@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4226868799054270}
   - component: {fileID: 114006030865369386}
   - component: {fileID: 114191533084569528}
+  - component: {fileID: 114929595149829036}
   m_Layer: 0
   m_Name: TempEnemy (2)
   m_TagString: Enemy
@@ -139,6 +140,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aad0b58383e9bc4a89fdb4c5748c3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114929595149829036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901241941961020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 916bb9e9bb2d9994facff1a0e14fc808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!136 &136988874645832842
 CapsuleCollider:
   m_ObjectHideFlags: 1
