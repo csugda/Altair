@@ -6,6 +6,7 @@ public class TargetAcquisition : MonoBehaviour {
     // Class Variables
     public Transform target = null;
     public Transform rotatingPart;
+	public Quaternion lookRot;
 
     public float range = 20f;
     public float updateTargetRate = 0.5f; //time in seconds
@@ -64,7 +65,7 @@ public class TargetAcquisition : MonoBehaviour {
         //determine direction to target
         Vector3 dir = target.position - transform.position;
         //calculate rotation 
-        Quaternion lookRot = Quaternion.LookRotation(dir);
+        lookRot = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(rotatingPart.rotation, lookRot, Time.deltaTime * traverseRate).eulerAngles;
         //rotate to target
         rotatingPart.rotation = Quaternion.Euler(0f, rotation.y, 0f);
