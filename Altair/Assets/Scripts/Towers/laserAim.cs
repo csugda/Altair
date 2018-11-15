@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class laserAim : MonoBehaviour
 {
@@ -18,11 +16,16 @@ public class laserAim : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        if (!targeter.isActiveAndEnabled)
+        {
+            laser.SetActive(false);
+            return;
+        }
 		if (targeter.target == null || Mathf.Abs(((targeter.rotatingPart.transform.rotation.eulerAngles.y + 360)
 			- (targeter.lookRot.eulerAngles.y + 360))) > 5)
 		{
-			laser.SetActive(false);
-		}
+            laser.SetActive(false);
+        }
 		else
 		{
 				laser.SetActive(true);
