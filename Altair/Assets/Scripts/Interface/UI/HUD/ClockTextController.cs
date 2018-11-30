@@ -16,8 +16,8 @@ public class ClockTextController : MonoBehaviour {
     private void Update()
     {
         clockTime -= Time.deltaTime;
-        int sec = (int)clockTime;
-        int ms = (int)((clockTime - sec) * 10);
+        int sec =  clockTime >= 0 ? (int)clockTime : 00;
+        int ms = clockTime >= 0 ?  (int)((clockTime - sec) * 10) : 00;
         this.gameObject.GetComponent<Text>().text = sec + ":" + ms;
     }
 
